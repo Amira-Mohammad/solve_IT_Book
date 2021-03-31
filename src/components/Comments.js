@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { useTable, useGlobalFilter, usePagination } from 'react-table';
-import Filteration from './Filteration'
 
 
 const Comments = () => {
@@ -68,12 +67,11 @@ const Comments = () => {
         setPageSize,
         prepareRow,
         state,
-        setGlobalFilter
     } = tableInstance
 
 
 
-    const { globalFilter, pageIndex, pageSize } = state
+    const { pageIndex, pageSize } = state
     return (
         <div>
             <div className="d-flex justify-content-between px-5 mt-4">

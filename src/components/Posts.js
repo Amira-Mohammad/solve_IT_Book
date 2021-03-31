@@ -55,19 +55,16 @@ const Posts = (props) => {
         setPageSize,
         prepareRow,
         state,
-        setGlobalFilter
     } = tableInstance
 
 
 
-    const { globalFilter, pageIndex, pageSize } = state
+    const {  pageIndex, pageSize } = state
 
     return (
         <div >
             <div className="d-flex justify-content-between px-5 mt-4">
-            <Link to='/comments'>
-                Posts
-            </Link>
+            <div className="font-weight-bold">Posts</div>
             <div>
                 show {pageSize} of {rows.length}
                 <select value={pageSize}
