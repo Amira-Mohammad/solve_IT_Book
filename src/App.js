@@ -7,7 +7,7 @@ import './App.css';
 
 function App() {
   return (
-    <BrowserRouter basename="/calendar">
+    <BrowserRouter basename="/solve_IT_Book">
       <div className="App">
         <div className="w-100 bg-dark header">header</div>
         <div className="w-100 bg-light text-left p-1 logo ">
