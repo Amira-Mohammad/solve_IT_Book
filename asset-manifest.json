@@ -1,8 +1,8 @@
 {
   "files": {
-    "main.css": "/solve_IT_Book/static/css/main.d5b88099.chunk.css",
-    "main.js": "/solve_IT_Book/static/js/main.3fc37daf.chunk.js",
-    "main.js.map": "/solve_IT_Book/static/js/main.3fc37daf.chunk.js.map",
+    "main.css": "/solve_IT_Book/static/css/main.a5f878bc.chunk.css",
+    "main.js": "/solve_IT_Book/static/js/main.c1453462.chunk.js",
+    "main.js.map": "/solve_IT_Book/static/js/main.c1453462.chunk.js.map",
     "runtime-main.js": "/solve_IT_Book/static/js/runtime-main.78b6be1f.js",
     "runtime-main.js.map": "/solve_IT_Book/static/js/runtime-main.78b6be1f.js.map",
     "static/css/2.ef9168ec.chunk.css": "/solve_IT_Book/static/css/2.ef9168ec.chunk.css",
@@ -12,14 +12,14 @@
     "static/js/3.545f97f0.chunk.js.map": "/solve_IT_Book/static/js/3.545f97f0.chunk.js.map",
     "index.html": "/solve_IT_Book/index.html",
     "static/css/2.ef9168ec.chunk.css.map": "/solve_IT_Book/static/css/2.ef9168ec.chunk.css.map",
-    "static/css/main.d5b88099.chunk.css.map": "/solve_IT_Book/static/css/main.d5b88099.chunk.css.map",
+    "static/css/main.a5f878bc.chunk.css.map": "/solve_IT_Book/static/css/main.a5f878bc.chunk.css.map",
     "static/js/2.9597b239.chunk.js.LICENSE.txt": "/solve_IT_Book/static/js/2.9597b239.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.78b6be1f.js",
     "static/css/2.ef9168ec.chunk.css",
     "static/js/2.9597b239.chunk.js",
-    "static/css/main.d5b88099.chunk.css",
-    "static/js/main.3fc37daf.chunk.js"
+    "static/css/main.a5f878bc.chunk.css",
+    "static/js/main.c1453462.chunk.js"
   ]
 }
