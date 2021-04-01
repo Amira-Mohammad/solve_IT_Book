@@ -3,6 +3,7 @@ import { useTable, useGlobalFilter, usePagination } from 'react-table'
 import { Link } from "react-router-dom";
 
 const Posts = (props) => {
+    console.log(props)
     const [postData, setPostData] = useState([]);
 
     const columns = React.useMemo(
@@ -62,7 +63,7 @@ const Posts = (props) => {
     const {  pageIndex, pageSize } = state
 
     return (
-        <div >
+        <div>
             <div className="d-flex justify-content-between px-5 mt-4">
             <div className="font-weight-bold">Posts</div>
             <div>

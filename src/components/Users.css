@@ -34,3 +34,6 @@ table {
   .postsLink:hover{
     text-decoration: none;
   }
+  .activeIcon{
+color: green;
+  }

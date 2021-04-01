@@ -30,6 +30,20 @@ function Users(props) {
             {
                 Header: 'Status',
                 accessor: 'status',
+                Cell: (row) =>
+                row.value == 'Active' ?   (
+                    
+                <div className="d-flex">
+                    <i class="fas fa-circle mt-1 mx-1 activeIcon"></i>
+                    <span className="activeIcon">{row.value}</span>
+                    
+                    
+                    </div>) :( <div className="d-flex">
+                    <i class="fas fa-circle mt-1 mx-1"></i>
+                    <span>{row.value}</span>
+                    
+                    
+                    </div>)
             },
 
             {
