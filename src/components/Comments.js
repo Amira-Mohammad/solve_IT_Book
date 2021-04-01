@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useTable, useGlobalFilter, usePagination } from 'react-table';
-
+import { Link } from "react-router-dom";
 
 const Comments = () => {
     const [commentData, setCommentData] = useState([]);
@@ -74,6 +74,10 @@ const Comments = () => {
     const { pageIndex, pageSize } = state
     return (
         <div>
+            <Link to='/posts:id' className="postsLink">
+                <button className="mx-5 mt-4 btn border bg-light">back <i class="fas fa-undo-alt"></i></button>
+            </Link>
+            <hr className="mx-5" />
             <div className="d-flex justify-content-between px-5 mt-4">
                 <div className="font-weight-bold">Comments</div>
                 <div>

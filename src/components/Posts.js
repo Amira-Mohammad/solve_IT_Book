@@ -60,27 +60,31 @@ const Posts = (props) => {
 
 
 
-    const {  pageIndex, pageSize } = state
+    const { pageIndex, pageSize } = state
 
     return (
         <div>
+            <Link to='/' className="postsLink">
+                <button className="mx-5 mt-4 btn border bg-light">back <i class="fas fa-undo-alt"></i></button>
+            </Link>
+            <hr className="mx-5" />
             <div className="d-flex justify-content-between px-5 mt-4">
-            <div className="font-weight-bold">Posts</div>
-            <div>
-                show {pageSize} of {rows.length}
-                <select value={pageSize}
-                    onChange={(e) => { setPageSize(Number(e.target.value)) }} >
-                    {[3, 5, 10, 20].map((pageSize) => (
+                <div className="font-weight-bold">Posts</div>
+                <div>
+                    show {pageSize} of {rows.length}
+                    <select value={pageSize}
+                        onChange={(e) => { setPageSize(Number(e.target.value)) }} >
+                        {[3, 5, 10, 20].map((pageSize) => (
 
-                        <option>
-                            {pageSize}
-                        </option>
-                    ))}
+                            <option>
+                                {pageSize}
+                            </option>
+                        ))}
 
-                </select>
+                    </select>
                 per page
                 </div>
-                </div>
+            </div>
             <div className="d-flex justify-content-center">
                 <table {...getTableProps()} className="container m-3 text-center shadow-lg">
                     <thead>
@@ -114,7 +118,7 @@ const Posts = (props) => {
                                                     <React.Fragment>
 
                                                         <td {...cell.getCellProps()}>
-                                                            <Link to='/comments'className="postsLink">
+                                                            <Link to='/comments' className="postsLink">
                                                                 {
                                                                     cell.render('Cell')}
 
