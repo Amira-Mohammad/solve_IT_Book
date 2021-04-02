@@ -1,11 +1,17 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { useTable, useGlobalFilter, usePagination } from 'react-table'
-import { Link } from "react-router-dom";
+import { Link, useParams, useHistory } from "react-router-dom";
+import { UserContext } from './HelperContext'
+
 
 const Posts = (props) => {
-    console.log(props)
+    console.log("useHistory from post", useHistory())
+    const history = useHistory()
+    const { userData } = useContext(UserContext);
+    //console.log("cccccccccccccc",userData)
     const [postData, setPostData] = useState([]);
-
+    const { id } = useParams()
+    //history.push("/posts/" + id)
     const columns = React.useMemo(
         () => [
             {
@@ -28,14 +34,37 @@ const Posts = (props) => {
         (async () => {
             const response = await fetch("https://gorest.co.in/public-api/posts");
             const postData = await response.json();
-            console.log("users", postData.data);
-            console.log("users from state ", postData.data)
-            setPostData(postData.data);
+            console.log("dataaaaaaaaaaaaaa", postData.data);
+            console.log("dataaaaaaaaaaaaaa from state ", postData.data)
+            const filterdData = postData.data.filter(post => {
+                // console.log('post =>', post.user_id)
+                // console.log('id =>', id)
+                if (post.user_id === +id) {
+                    return post
+                }
+            })
+
+            setPostData(filterdData);
+            console.log("ssssssssssssss", filterdData)
+
+
         })();
     }, []);
 
+    const displayUserData = (userData) => {
+        let user;
+        // console.log("propsssssssssssssssssssssssssssss")
+        userData.forEach(userObj => {
+            if (userObj.id === +id) {
+                user = userObj
 
+            }
 
+        });
+        return user
+    }
+    const renderedUser = displayUserData(userData)
+    console.log("renderedUser", renderedUser)
     const tableInstance = useTable({
         columns,
         data: postData
@@ -64,10 +93,42 @@ const Posts = (props) => {
 
     return (
         <div>
-            <Link to='/' className="postsLink">
-                <button className="mx-5 mt-4 btn border bg-light">back <i class="fas fa-undo-alt"></i></button>
-            </Link>
+
+            <button onClick={() => {
+                history.goBack()
+            }} className="mx-5 mt-4 btn border bg-light">back <i class="fas fa-undo-alt"></i></button>
+
             <hr className="mx-5" />
+            <div className="d-flex mx-5 mt-4">
+                <div className="Avatar bg-light text-center pt-4 mx-3"><i class="far fa-user fa-3x"></i></div>
+                <div className="d-flex flex-column">
+                    <div className="mt-4 font-weight-bold">{renderedUser.name}</div>
+                    <div className="text-muted">{renderedUser.email}</div>
+                    <div className="activeIcon">{renderedUser.status}</div>
+                </div>
+            </div>
+
+            <div className="d-flex border-bottom mx-5 p-4">
+                <div className="cube border-right px-4 d-flex flex-column justify-content-between">
+                    <div>TOTAL NO OF POSTS</div>
+                    <div className="font-weight-bold">{postData.length}</div>
+                </div>
+
+                <div className="cube border-right px-4 d-flex flex-column justify-content-between" >
+                    <div>CURRENT PAGE NO OF POSTS</div>
+                    <div className="font-weight-bold text-danger">{pageSize}</div>
+                </div>
+                <div className="cube border-right px-4 d-flex flex-column justify-content-between">
+                    <div>USER CREATION DATE</div>
+                    <div className="font-weight-bold overflow-hidden">{renderedUser.created_at}</div>
+                </div>
+                <div className="cube  px-4 d-flex flex-column justify-content-between">
+                    <div>USER UPDATE DATE</div>
+                    <div className="font-weight-bold overflow-hidden">{renderedUser.updated_at}</div>
+                </div>
+
+            </div>
+
             <div className="d-flex justify-content-between px-5 mt-4">
                 <div className="font-weight-bold">Posts</div>
                 <div>
@@ -118,7 +179,8 @@ const Posts = (props) => {
                                                     <React.Fragment>
 
                                                         <td {...cell.getCellProps()}>
-                                                            <Link to='/comments' className="postsLink">
+
+                                                            <Link to={'/comments/' + row.original.id} className="postsLink">
                                                                 {
                                                                     cell.render('Cell')}
 

@@ -1,10 +1,17 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, createContext, useContext } from 'react';
 import { useTable, useGlobalFilter, usePagination } from 'react-table'
+import { UserContext } from './HelperContext'
 import { Link } from "react-router-dom";
 import Filteration from './Filteration'
 import './Users.css'
+//import UserContext from './HelperContext'
+
+//const UserContext = createContext();
 
 function Users(props) {
+
+    const { setData } = useContext(UserContext);
+
     const [userData, setUserData] = useState([]);
 
     const columns = React.useMemo(
@@ -31,19 +38,19 @@ function Users(props) {
                 Header: 'Status',
                 accessor: 'status',
                 Cell: (row) =>
-                row.value == 'Active' ?   (
-                    
-                <div className="d-flex">
-                    <i class="fas fa-circle mt-1 mx-1 activeIcon"></i>
-                    <span className="activeIcon">{row.value}</span>
-                    
-                    
-                    </div>) :( <div className="d-flex">
-                    <i class="fas fa-circle mt-1 mx-1"></i>
-                    <span>{row.value}</span>
-                    
-                    
-                    </div>)
+                    row.value == 'Active' ? (
+
+                        <div className="d-flex">
+                            <i class="fas fa-circle mt-1 mx-1 activeIcon"></i>
+                            <span className="activeIcon">{row.value}</span>
+
+
+                        </div>) : (<div className="d-flex">
+                            <i class="fas fa-circle mt-1 mx-1"></i>
+                            <span>{row.value}</span>
+
+
+                        </div>)
             },
 
             {
@@ -65,6 +72,7 @@ function Users(props) {
             console.log("users", usersData.data);
             console.log("users from state ", usersData.data)
             setUserData(usersData.data);
+            // const user_data = React.useContext(UserContext);
         })();
     }, []);
 
@@ -75,7 +83,7 @@ function Users(props) {
     //     return usersData
     // }
 
-
+    setData(userData)
     const tableInstance = useTable({
         columns,
         data: userData
@@ -102,7 +110,6 @@ function Users(props) {
 
 
     const { globalFilter, pageIndex, pageSize } = state
-
     return (
         <div>
             <div className="d-flex justify-content-between px-5 mt-4">
@@ -155,7 +162,7 @@ function Users(props) {
                                                     <React.Fragment>
 
                                                         <td {...cell.getCellProps()}>
-                                                            <Link to={'/posts' + row.id} className="postsLink">
+                                                            <Link to={'/posts/' + row.original.id} className="postsLink">
                                                                 {
                                                                     cell.render('Cell')}
 
@@ -189,7 +196,8 @@ function Users(props) {
 
             </div>
         </div>
+
     );
 }
 
-export default Users;
+export { Users };

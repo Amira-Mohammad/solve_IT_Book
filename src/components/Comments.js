@@ -1,10 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect  } from 'react';
 import { useTable, useGlobalFilter, usePagination } from 'react-table';
-import { Link } from "react-router-dom";
+import { Link , useParams , useHistory } from "react-router-dom";
 
 const Comments = () => {
+    //console.log("useHistory " , useHistory() )
+    const history = useHistory()
     const [commentData, setCommentData] = useState([]);
-
+    const { id } = useParams()
     const columns = React.useMemo(
         () => [
             {
@@ -41,7 +43,13 @@ const Comments = () => {
             const commentData = await response.json();
             console.log("users", commentData.data);
             console.log("users from state ", commentData.data)
-            setCommentData(commentData.data);
+            const filterdComments = commentData.data.filter(comment => {
+                if (comment.post_id === +id) {
+                    return comment
+                }
+            })
+            setCommentData(filterdComments);
+            console.log("filterdComments" , filterdComments)
         })();
     }, []);
 
@@ -74,9 +82,9 @@ const Comments = () => {
     const { pageIndex, pageSize } = state
     return (
         <div>
-            <Link to='/posts:id' className="postsLink">
-                <button className="mx-5 mt-4 btn border bg-light">back <i class="fas fa-undo-alt"></i></button>
-            </Link>
+           <button onClick={()=>{
+                    history.goBack()
+                }} className="mx-5 mt-4 btn border bg-light">back <i class="fas fa-undo-alt"></i></button>
             <hr className="mx-5" />
             <div className="d-flex justify-content-between px-5 mt-4">
                 <div className="font-weight-bold">Comments</div>
